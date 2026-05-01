@@ -10,7 +10,7 @@ export function exe5Rep(): void {
     let qtdOuro: number = 0;
 
     for (let i = 1; i <= 5; i++) {
-        const valor = Number(prompt(`Digite o valor da venda do vendedor ${i}:`));
+        const valor: number = Number(prompt(`Digite o valor da venda do vendedor ${i}:`));
         totalVendas += valor;
 
         if (valor > maiorVenda) maiorVenda = valor;

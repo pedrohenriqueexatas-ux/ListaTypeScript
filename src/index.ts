@@ -24,6 +24,11 @@ import { exe1Array } from "./arrays/exe1.js";
 import { exe2Array } from "./arrays/exe2.js";
 import { exe3Array } from "./arrays/exe3.js";
 import { exe4Array } from "./arrays/exe4.js";
+import { exe5Array } from "./arrays/exe5.js";
+import { exe6Array } from "./arrays/exe6.js";
+import { exe7Array } from "./arrays/exe7.js";
+import { exe8Array } from "./arrays/exe8.js";
+import { exe9Array } from "./arrays/exe9.js";
 
 const exercicios: Record<string, Function> = {
     // Condicional
@@ -33,7 +38,7 @@ const exercicios: Record<string, Function> = {
     // Funções
     exe1Func, exe2Func, exe3Func, exe4Func, exe5Func, exe6Func, exe7Func, exe8Func, exe9Func, exe10Func,
     // Arrays
-    exe1Array, exe2Array, exe3Array, exe4Array
+    exe1Array, exe2Array, exe3Array, exe4Array, exe5Array, exe6Array, exe7Array, exe8Array, exe9Array
 };
 
 function rodar(nome: string): void {
@@ -56,6 +61,5 @@ function verCodigo(nome: string): void {
     }
 }
 
-// Expondo as funções para o HTML
 (window as any).rodar = rodar;
 (window as any).verCodigo = verCodigo;

@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Exercícios</title>
+    <title>TypeScript Edu - Portal de Exercícios</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Menu Principal</h1>
-        <p>Escolha uma categoria de exercícios:</p>
-        <div class="menu-grid">
-            <a href="condicional.html" class="btn">Condicional</a>
-            <a href="repeticao.html" class="btn">Repetição</a>
-            <a href="funcoes.html" class="btn">Funções</a>
-            <a href="arrays.html" class="btn">Arrays</a>
-            <a href="exercicios.html?tipo=condicional" class="btn">Lista Dinâmica</a>
+        <header>
+            <h1>TypeScript Edu</h1>
+            <p>Selecione uma categoria para visualizar os exercícios resolvidos</p>
+        </header>
+
+        <div class="tabs" id="category-tabs">
+            <button class="tab-btn active" data-target="condicional">Condicional</button>
+            <button class="tab-btn" data-target="repeticao">Repetição</button>
+            <button class="tab-btn" data-target="funcoes">Funções</button>
+            <button class="tab-btn" data-target="arrays">Arrays</button>
+        </div>
+
+        <div id="exercicios-dinamicos" class="buttons-grid">
+            <!-- Gerado via JS -->
         </div>
     </div>
+
+    <!-- Script bundles -->
+    <script src="dist/bundle.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

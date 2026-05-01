@@ -1,47 +1,71 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const tipo = params.get("tipo");
     const container = document.getElementById("exercicios-dinamicos");
+    const tabs = document.querySelectorAll(".tab-btn");
 
-    if (container && tipo) {
-        const categorias = {
-            "condicional": { title: "Condicional", suffix: "Cond", count: 4 },
-            "repeticao": { title: "Repetição", suffix: "Rep", count: 5 },
-            "funcoes": { title: "Funções", suffix: "Func", count: 10 },
-            "arrays": { title: "Arrays", suffix: "Array", count: 4 }
-        };
+    const categorias = {
+        "condicional": { title: "Condicional", suffix: "Cond", count: 4 },
+        "repeticao": { title: "Repetição", suffix: "Rep", count: 5 },
+        "funcoes": { title: "Funções", suffix: "Func", count: 10 },
+        "arrays": { title: "Arrays", suffix: "Array", count: 9 }
+    };
 
+    function renderCategory(tipo) {
+        if (!container) return;
+        
+        // Clear current
+        container.innerHTML = "";
         const config = categorias[tipo];
-        if (config) {
-            document.getElementById("titulo-dinamico").textContent = config.title;
-            for (let i = 1; i <= config.count; i++) {
-                const group = document.createElement("div");
-                group.className = "exercise-group";
-                group.style.display = "flex";
-                group.style.gap = "10px";
-                group.style.marginBottom = "15px";
-                group.style.justifyContent = "center";
+        
+        if (!config || config.count === 0) {
+            container.innerHTML = "<div class='empty-state'>Nenhum exercício disponível nesta categoria ainda.</div>";
+            return;
+        }
 
-                const btnRodar = document.createElement("button");
-                btnRodar.className = "btn";
-                btnRodar.textContent = `Rodar Exercício ${i}`;
-                btnRodar.onclick = () => {
-                    if (window.rodar) window.rodar(`exe${i}${config.suffix}`);
-                };
+        for (let i = 1; i <= config.count; i++) {
+            const funcName = `exe${i}${config.suffix}`;
+            
+            const card = document.createElement("div");
+            card.className = "exercise-card";
+            
+            const title = document.createElement("h3");
+            title.textContent = `Exercício ${i}`;
+            
+            const actions = document.createElement("div");
+            actions.className = "card-actions";
+            
+            const btnRodar = document.createElement("button");
+            btnRodar.className = "btn";
+            btnRodar.textContent = `Rodar`;
+            btnRodar.onclick = () => {
+                if (window.rodar) window.rodar(funcName);
+            };
 
-                const btnCodigo = document.createElement("button");
-                btnCodigo.className = "btn btn-alt";
-                btnCodigo.textContent = `Código`;
-                btnCodigo.style.background = "#8D99AE";
-                btnCodigo.onclick = () => {
-                    if (window.verCodigo) window.verCodigo(`exe${i}${config.suffix}`);
-                    alert("O código foi impresso no Console (F12)!");
-                };
+            const btnCodigo = document.createElement("button");
+            btnCodigo.className = "btn btn-alt";
+            btnCodigo.textContent = `Código`;
+            btnCodigo.onclick = () => {
+                if (window.verCodigo) window.verCodigo(funcName);
+                alert("O código foi impresso no Console (F12)!");
+            };
 
-                group.appendChild(btnRodar);
-                group.appendChild(btnCodigo);
-                container.appendChild(group);
-            }
+            actions.appendChild(btnRodar);
+            actions.appendChild(btnCodigo);
+            card.appendChild(title);
+            card.appendChild(actions);
+            
+            container.appendChild(card);
         }
     }
+
+    // Tab Logic
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            tabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            renderCategory(tab.dataset.target);
+        });
+    });
+
+    // Initial render
+    renderCategory("condicional");
 });

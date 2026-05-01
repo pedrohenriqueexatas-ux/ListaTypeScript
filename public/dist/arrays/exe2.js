@@ -1,23 +1,28 @@
 export function exe2Array() {
-    const notas = [];
+    console.log("--- Exercício 2: Sistema de Notas (Até -1) ---");
+    let notas = [];
+    let nota;
     while (true) {
-        const n = Number(prompt("Digite uma nota (-1 para encerrar):"));
-        if (n === -1)
+        let input = prompt("Digite uma nota (ou -1 para encerrar):");
+        if (input === null || input === "-1")
             break;
-        notas.push(n);
+        nota = parseFloat(input);
+        if (!isNaN(nota)) {
+            notas.push(nota);
+        }
     }
-    const qtd = notas.length;
-    if (qtd === 0) {
-        console.log("Nenhuma nota informada.");
+    if (notas.length === 0) {
+        alert("Nenhuma nota informada.");
         return;
     }
-    const soma = notas.reduce((acc, curr) => acc + curr, 0);
-    const media = soma / qtd;
+    const soma = notas.reduce((acc, n) => acc + n, 0);
+    const media = soma / notas.length;
     const acimaMedia = notas.filter(n => n > media).length;
-    console.log(`Quantidade de notas: ${qtd}`);
-    console.log(`Notas na ordem: ${notas.join(", ")}`);
-    console.log(`Notas na ordem inversa: ${[...notas].reverse().join(", ")}`);
-    console.log(`Soma das notas: ${soma.toFixed(2)}`);
-    console.log(`Média das notas: ${media.toFixed(2)}`);
-    console.log(`Notas acima da média: ${acimaMedia}`);
+    console.log("Quantidade de notas:", notas.length);
+    console.log("Notas na ordem informada:", notas);
+    console.log("Notas na ordem inversa:", [...notas].reverse());
+    console.log("Soma das notas:", soma);
+    console.log("Média das notas:", media.toFixed(2));
+    console.log("Notas acima da média:", acimaMedia);
+    alert("Estatísticas impressas no console (F12)!");
 }

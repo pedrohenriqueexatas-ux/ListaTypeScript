@@ -1,17 +1,16 @@
-function calcular_media(notas) {
-    if (notas.length === 0)
-        return 0;
-    const soma = notas.reduce((acc, curr) => acc + curr, 0);
-    return Number((soma / notas.length).toFixed(2));
-}
 export function exe4Array() {
-    const notasEnem = [];
-    console.log("Calculadora de Média ENEM (Digite 5 notas)");
-    for (let i = 1; i <= 5; i++) {
-        const n = Number(prompt(`Nota da disciplina ${i}:`));
-        notasEnem.push(n);
+    console.log("--- Exercício 4: Calculadora ENEM ---");
+    function calcular_media(notas) {
+        const soma = notas.reduce((acc, n) => acc + n, 0);
+        return parseFloat((soma / notas.length).toFixed(2));
+    }
+    let notasEnem = [];
+    const materias = ["Ciências da Natureza", "Ciências Humanas", "Linguagens", "Matemática", "Redação"];
+    for (let materia of materias) {
+        let nota = prompt(`Digite a nota de ${materia}:`);
+        notasEnem.push(parseFloat(nota || "0"));
     }
     const mediaFinal = calcular_media(notasEnem);
-    console.log(`Suas notas: ${notasEnem.join(", ")}`);
-    console.log(`Sua média final arredondada é: ${mediaFinal}`);
+    alert(`A média final do ENEM é: ${mediaFinal}`);
+    console.log("Notas individuais:", notasEnem);
 }

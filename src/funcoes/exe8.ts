@@ -1,7 +1,7 @@
 function processarItem(preco: number, qtd: number): number {
     let total = preco * qtd;
     if (qtd > 10) {
-        total *= 0.95; // 5% desconto
+        total *= 0.95;
         console.log(`Desconto de 5% aplicado para ${qtd} unidades.`);
     }
     return total;
