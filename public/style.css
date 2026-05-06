@@ -165,3 +165,34 @@ p {
     padding: 3rem;
     color: var(--text-secondary);
 }
+
+/* Navigation Menu */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem auto;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--card-border);
+    max-width: fit-content;
+}
+
+nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+}
+
+nav a:hover {
+    background: var(--btn-primary);
+    color: white;
+    box-shadow: var(--accent-glow);
+    transform: translateY(-2px);
+}
